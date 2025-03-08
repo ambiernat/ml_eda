@@ -3,8 +3,8 @@ import numpy as np
 import sys
 
 
-mode = input("Paste path to the training data and press enter (without the '' marks), e.g. /content/drive/MyDrive/Kaggle/kaggle_data/train.csv: ").strip()
-data = pd.read_csv(mode)
+path = input("Paste path to the training data and press enter (without the '' marks), e.g. /content/drive/MyDrive/Kaggle/kaggle_data/train.csv: ").strip()
+data = pd.read_csv(path)
 
 # identifying columns which have different values and so are useless for prediction:
 def identifier_cols_fctn(df):
