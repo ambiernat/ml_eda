@@ -68,7 +68,9 @@ create_eda_folder()
 with pd.option_context('display.max_colwidth', None):
   col_types_eda_df
 
-del eda_col_types, eda_keys, eda_vals, other, missing_val_cols, datetime_cols, category_cols, object_cols, bool_cols, numerical_cols, identifier_cols
+#del eda_keys, eda_vals, other, missing_val_cols, datetime_cols, category_cols, object_cols, bool_cols, numerical_cols, identifier_cols
+# Note: Advantage of wrappping everything in functions: do not create variables that are then stored in memory!!!
+# Hence also worth creating functions/classes
 
 print(col_types_eda_df)
 print('Dataframe Name:col_types_eda_df')
