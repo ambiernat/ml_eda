@@ -7,7 +7,7 @@ path = input("Paste path to the training data and press enter (without the '' ma
 data = pd.read_csv(path)
 
 # Create an EDA folder if it doesn't exist
-def create_mp3_folder():
+def create_eda_folder():
     current_dir = os.getcwd()
 
     eda_folder_path = os.path.join(current_dir, 'EDA')
@@ -33,11 +33,6 @@ def missing_val_cols_fctn(df):
     else: pass
     return colnames_return
 
-eda_keys=['identifier', 'numerical', 'boolean', 'object', 'category', 'datetime', 'missing', 'other']
-
-eda_col_types = dict(zip(eda_keys, eda_vals))
-
-col_types_eda_df = pd.DataFrame.from_dict(eda_col_types, orient='index').rename(columns={0:'column_names'})
 
 def eda_vals_all_cols():
     identifier_cols = identifier_cols_fctn(data)
@@ -51,16 +46,21 @@ def eda_vals_all_cols():
     category_cols=list(data.select_dtypes(include='category'))
     # datetime columns
     datetime_cols=list(data.select_dtypes(include='datetime'))
+    #return columns containing missing values
     missing_val_cols=missing_val_cols_fctn(data)
-    
+    # return all other column names which were not returned as part of the earlier investigation
+    other = list(set(data.columns.tolist()).difference(set(identifier_cols+numerical_cols+bool_cols+object_cols+category_cols+datetime_cols+missing_val_cols)))
     eda_vals=[str(identifier_cols), str(numerical_cols), str(bool_cols), str(object_cols), 
               str(category_cols), str(datetime_cols), str(missing_val_cols), str(other)]
 
     return eda_vals
 
+def main():
+    eda_keys=['identifier', 'numerical', 'boolean', 'object', 'category', 'datetime', 'missing', 'other']
+    eda_col_types = dict(zip(eda_keys, eda_vals))
+    return pd.DataFrame.from_dict(eda_col_types, orient='index').rename(columns={0:'column_names'})
 
-# return all other column names which were not returned as part of the earlier investigation
-other = list(set(data.columns.tolist()).difference(set(identifier_cols+numerical_cols+bool_cols+object_cols+category_cols+datetime_cols+missing_val_cols)))
+col_types_eda_df = main()
 
 with pd.option_context('display.max_colwidth', None):
   col_types_eda_df
