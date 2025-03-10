@@ -61,6 +61,7 @@ def main():
     return pd.DataFrame.from_dict(eda_col_types, orient='index').rename(columns={0:'column_names'})
 
 col_types_eda_df = main()
+create_eda_folder()
 
 with pd.option_context('display.max_colwidth', None):
   col_types_eda_df
