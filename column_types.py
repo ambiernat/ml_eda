@@ -57,6 +57,7 @@ def eda_vals_all_cols():
 
 def main():
     eda_keys=['identifier', 'numerical', 'boolean', 'object', 'category', 'datetime', 'missing', 'other']
+    eda_vals=eda_vals_all_cols()
     eda_col_types = dict(zip(eda_keys, eda_vals))
     return pd.DataFrame.from_dict(eda_col_types, orient='index').rename(columns={0:'column_names'})
 
