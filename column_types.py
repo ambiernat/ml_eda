@@ -65,6 +65,7 @@ def main():
 col_types_eda_df = main()
 create_eda_folder()
 
+eda_folder_path = os.path.join(os.getcwd(), 'EDA')
 file_path = os.path.join(eda_folder_path, 'col_types.csv')
 with open(file_path, 'w', encoding = 'utf-8-sig') as f:
   col_types_eda_df.to_csv(f)
