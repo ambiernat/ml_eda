@@ -78,4 +78,4 @@ with pd.option_context('display.max_colwidth', None):
 # Hence also worth creating functions/classes
 
 print(col_types_eda_df)
-print('Dataframe Name:col_types_eda_df')
+print('Dataframe Name:col_types.csv. This dataframe is also saved in the EDA folder')
