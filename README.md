@@ -54,7 +54,12 @@ To use it, you need to complete the following steps:
 <div align="justify">
   
 - Download the repository and install the required modules
-- Run the script 🚀
+- Run the chosen script 🚀 (depending on which script you want to use!) through:
+
+   ```
+   !python /content/ml_eda/script_name.py
+   ```
+
 - Follow the instructions on the screen
 
 </div>
