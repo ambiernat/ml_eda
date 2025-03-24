@@ -28,7 +28,7 @@ def create_eda_folder():
         os.makedirs(eda_folder_path)
 
 def categorical_plot(train, column_types_table):
-    
+      # create a dictionary to make a variable name of the plots & plot subplots as a consequence
     object_cols = ast.literal_eval(column_types_table.loc['object'].iloc[0])
     plot_keys = train[object_cols].columns.tolist()
     addText = "_ax"
