@@ -28,6 +28,7 @@ def create_eda_folder():
         os.makedirs(eda_folder_path)
 
 def categorical_plot(train, column_types_table):
+    print(column_types_table)
   object_cols = ast.literal_eval(column_types_table.loc['object'].iloc[0])
   plot_keys = train[object_cols].columns.tolist()
   addText = "_ax"
