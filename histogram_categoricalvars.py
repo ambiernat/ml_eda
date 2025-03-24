@@ -17,7 +17,7 @@ import os
 path_train = input("Paste path to the training data and press enter (without the '' marks), e.g. /content/drive/MyDrive/Kaggle/kaggle_data/train.csv: ").strip()
 path_column_types = input("Paste path to the table with column types and press enter (without the '' marks), e.g. /content/drive/MyDrive/Kaggle/kaggle_data/test.csv: ").strip()
 data_train = pd.read_csv(path_train)
-column_types_table_input = pd.read_csv(path_column_types)
+column_types_table_input = pd.read_csv(path_column_types, index_col=0)
 
 # Create an EDA folder if it doesn't exist
 def create_eda_folder():
