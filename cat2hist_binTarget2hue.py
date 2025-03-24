@@ -64,7 +64,7 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table):
 
 plot_to_save = categorical2hist_binaryTarget2Hue(train=data_train, column_types_table=column_types_table_input)
 create_eda_folder()
-file_name = 'histogram_categorical.png'
+file_name = 'histogram_w_binTargethue.png'
 eda_folder_path = os.path.join(os.getcwd(), 'EDA')
 
 file_path = os.path.join(eda_folder_path, file_name)
@@ -72,5 +72,5 @@ file_path = os.path.join(eda_folder_path, file_name)
 plt.savefig(file_path)
 
 #plot_to_save
-text_to_display = 'File name '+file_name[:-4] +'. '+'This is also saved in the EDA folder'
+text_to_display = 'File name: '+file_name[:-4] +'. '+'This is also saved in the EDA folder'
 print(text_to_display)
