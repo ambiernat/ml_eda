@@ -51,10 +51,10 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
     col=[c]
     index=plot_keys.index(c)
     data_sorted = pd.DataFrame(train[c].sort_values(ascending=True))
-    data_sorted2=pd.merge(data_sorted, train['loan_status'], left_on=data_sorted.index, right_index=True).drop('key_0', axis=1)
+    data_sorted2=pd.merge(data_sorted, train[target], left_on=data_sorted.index, right_index=True).drop('key_0', axis=1)
     col_counts = train[col[0]].value_counts()
 
-    plot_dict[c] = sns.histplot(data=data_sorted2, x=col[0], ax=axs[index][0], hue='loan_status')
+    plot_dict[c] = sns.histplot(data=data_sorted2, x=col[0], ax=axs[index][0], hue=target)
     plot_dict[c].set_title("Counts of "+col[0])
     plot_dict[c].bar_label(plot_dict[c].containers[0], label_type='edge') # displays value above each bar in a histogram
     plot_dict[c].bar_label(plot_dict[c].containers[1], label_type='edge') # displays value above each bar in a histogram
@@ -64,7 +64,7 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
     plot_dict[c].set_xticks(train[col[0]].value_counts().index.tolist())
     plot_dict[c].set_xticklabels(col_counts.index.tolist(),rotation=20) # rotation of the x-labels
 
-plot_to_save = categorical2hist_binaryTarget2Hue(train=data_train, column_types_table=column_types_table_input)
+plot_to_save = categorical2hist_binaryTarget2Hue(train=data_train, column_types_table=column_types_table_input, target_name=target_name)
 create_eda_folder()
 file_name = 'histogram_w_binTargethue.png'
 eda_folder_path = os.path.join(os.getcwd(), 'EDA')
