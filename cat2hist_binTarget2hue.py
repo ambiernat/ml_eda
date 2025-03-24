@@ -16,6 +16,7 @@ import os
 
 path_train = input("Paste path to the training data and press enter (without the '' marks), e.g. /content/drive/MyDrive/Kaggle/kaggle_data/train.csv: ").strip()
 path_column_types = input("Paste path to the table with column types and press enter (without the '' marks), e.g. /content/drive/MyDrive/Kaggle/kaggle_data/test.csv: ").strip()
+target_name = input("Enter the name of the target column and press enter (without the '' marks), e.g. loan_status").strip()
 data_train = pd.read_csv(path_train)
 column_types_table_input = pd.read_csv(path_column_types, index_col=0)
 
@@ -27,7 +28,7 @@ def create_eda_folder():
     if not os.path.exists(eda_folder_path):
         os.makedirs(eda_folder_path)
 
-def categorical2hist_binaryTarget2Hue(train, column_types_table):
+def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
   # create a dictionary to make a variable name of the plots & plot subplots as a consequence
   object_cols = ast.literal_eval(column_types_table.loc['object'].iloc[0])
   plot_keys = train[object_cols].columns.tolist()
@@ -38,6 +39,7 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table):
   fig, axs = plt.subplots(nrows=train[object_cols].shape[1], ncols=1, squeeze=False) #squeeze=False is crucial here for creating these for... subscritable plots with variable name!!!!
 
   fig.set_size_inches(w=9, h=15)
+  target = "'"+target_name+"'"
 
   # Adjust spacing
   plt.subplots_adjust(#left=0.1, right=0.9,
