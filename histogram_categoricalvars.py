@@ -29,35 +29,35 @@ def create_eda_folder():
 
 def categorical_plot(train, column_types_table):
     print(column_types_table)
-  object_cols = ast.literal_eval(column_types_table.loc['object'].iloc[0])
-  plot_keys = train[object_cols].columns.tolist()
-  addText = "_ax"
-  plot_vals = [str(i)+addText for i in plot_keys]
-  plot_dict=dict(zip(plot_keys, plot_vals))
-
-  fig, axs = plt.subplots(nrows=train[object_cols].shape[1], ncols=1, squeeze=False) #squeeze=False is crucial here for creating these for... subscritable plots with variable name!!!!
-
-  fig.set_size_inches(w=9, h=15)
-
-  # Adjust spacing
-  plt.subplots_adjust(#left=0.1, right=0.9,
-                      #top=0.9, bottom=0.5,
-                      wspace=0.4, hspace=0.9)
-
-
-  for c in train[object_cols].columns:
-    col=[c]
-    index=plot_keys.index(c)
-    data_sorted = pd.DataFrame(train[c].sort_values(ascending=True))
-    col_counts = train[col[0]].value_counts()
-    plot_dict[c] = sns.histplot(data=data_sorted, x=col[0], ax=axs[index][0])
-    plot_dict[c].set_title("Counts of "+col[0])
-    plot_dict[c].bar_label(plot_dict[c].containers[0], label_type='edge') # displays value above each bar in a histogram
-    plot_dict[c].set_xlabel("Levels", fontsize=10)
-    plot_dict[c].set_ylabel("Count", fontsize=10)
-    plot_dict[c].set_ylim(top=col_counts.max()+5000) #note! for ylim adjustment to have visible effect on subplots, need to make it in multiples of ticks or adjust ticks also
-    plot_dict[c].set_xticks(train[col[0]].value_counts().index.tolist())
-    plot_dict[c].set_xticklabels(col_counts.index.tolist(),rotation=20) # rotation of the x-labels
+    object_cols = ast.literal_eval(column_types_table.loc['object'].iloc[0])
+    plot_keys = train[object_cols].columns.tolist()
+    addText = "_ax"
+    plot_vals = [str(i)+addText for i in plot_keys]
+    plot_dict=dict(zip(plot_keys, plot_vals))
+    
+    fig, axs = plt.subplots(nrows=train[object_cols].shape[1], ncols=1, squeeze=False) #squeeze=False is crucial here for creating these for... subscritable plots with variable name!!!!
+    
+    fig.set_size_inches(w=9, h=15)
+    
+      # Adjust spacing
+    plt.subplots_adjust(#left=0.1, right=0.9,
+                        #top=0.9, bottom=0.5,
+                        wspace=0.4, hspace=0.9)
+    
+    
+    for c in train[object_cols].columns:
+        col=[c]
+        index=plot_keys.index(c)
+        data_sorted = pd.DataFrame(train[c].sort_values(ascending=True))
+        col_counts = train[col[0]].value_counts()
+        plot_dict[c] = sns.histplot(data=data_sorted, x=col[0], ax=axs[index][0])
+        plot_dict[c].set_title("Counts of "+col[0])
+        plot_dict[c].bar_label(plot_dict[c].containers[0], label_type='edge') # displays value above each bar in a histogram
+        plot_dict[c].set_xlabel("Levels", fontsize=10)
+        plot_dict[c].set_ylabel("Count", fontsize=10)
+        plot_dict[c].set_ylim(top=col_counts.max()+5000) #note! for ylim adjustment to have visible effect on subplots, need to make it in multiples of ticks or adjust ticks also
+        plot_dict[c].set_xticks(train[col[0]].value_counts().index.tolist())
+        plot_dict[c].set_xticklabels(col_counts.index.tolist(),rotation=20) # rotation of the x-labels
 
 plot_to_save = categorical_plot(train=data_train, column_types_table=column_types_table_input)
 create_eda_folder()
