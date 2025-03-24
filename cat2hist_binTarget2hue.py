@@ -28,7 +28,7 @@ def create_eda_folder():
     if not os.path.exists(eda_folder_path):
         os.makedirs(eda_folder_path)
 
-def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
+def categorical2hist_binaryTarget2Hue(train, column_types_table, target):
   # create a dictionary to make a variable name of the plots & plot subplots as a consequence
   object_cols = ast.literal_eval(column_types_table.loc['object'].iloc[0])
   plot_keys = train[object_cols].columns.tolist()
@@ -39,8 +39,6 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
   fig, axs = plt.subplots(nrows=train[object_cols].shape[1], ncols=1, squeeze=False) #squeeze=False is crucial here for creating these for... subscritable plots with variable name!!!!
 
   fig.set_size_inches(w=9, h=15)
-  #target = "'"+target_name+"'"
-  target = target_name
     
   # Adjust spacing
   plt.subplots_adjust(#left=0.1, right=0.9,
@@ -65,7 +63,7 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
     plot_dict[c].set_xticks(train[col[0]].value_counts().index.tolist())
     plot_dict[c].set_xticklabels(col_counts.index.tolist(),rotation=20) # rotation of the x-labels
 
-plot_to_save = categorical2hist_binaryTarget2Hue(train=data_train, column_types_table=column_types_table_input, target_name=target_name)
+plot_to_save = categorical2hist_binaryTarget2Hue(train=data_train, column_types_table=column_types_table_input, target=target_name)
 create_eda_folder()
 file_name = 'histogram_w_binTargethue.png'
 eda_folder_path = os.path.join(os.getcwd(), 'EDA')
