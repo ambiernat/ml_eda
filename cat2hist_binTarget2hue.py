@@ -39,8 +39,9 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
   fig, axs = plt.subplots(nrows=train[object_cols].shape[1], ncols=1, squeeze=False) #squeeze=False is crucial here for creating these for... subscritable plots with variable name!!!!
 
   fig.set_size_inches(w=9, h=15)
-  target = "'"+target_name+"'"
-
+  #target = "'"+target_name+"'"
+  target = target_name.copy()
+    
   # Adjust spacing
   plt.subplots_adjust(#left=0.1, right=0.9,
                       #top=0.9, bottom=0.5,
