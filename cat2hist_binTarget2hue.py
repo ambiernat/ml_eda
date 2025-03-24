@@ -40,7 +40,7 @@ def categorical2hist_binaryTarget2Hue(train, column_types_table, target_name):
 
   fig.set_size_inches(w=9, h=15)
   #target = "'"+target_name+"'"
-  target = target_name.copy()
+  target = target_name
     
   # Adjust spacing
   plt.subplots_adjust(#left=0.1, right=0.9,
